@@ -1,9 +1,12 @@
 <div class="products-list">
   <div class="content">
+    <button *ngIf="isAdmin" (click)="onAdd()">Add Product</button>
     <app-product
       *ngFor="let product of products | async"
       [product]="product"
       (buy)="onBuy($event)"
+      (edit)="onEdit($event)"
+      (delete)="onDelete($event)"
     >
     </app-product>
   </div>

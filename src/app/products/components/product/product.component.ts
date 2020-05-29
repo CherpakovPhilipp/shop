@@ -18,6 +18,12 @@ export class ProductComponent implements OnInit {
 
   @Output()
   buy: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output()
+  delete: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output()
+  edit: EventEmitter<Product> = new EventEmitter<Product>();
+
+  isAdmin: boolean = true;
 
   constructor(
     private productsService: ProductsService,
@@ -47,5 +53,15 @@ export class ProductComponent implements OnInit {
     }
 
     this.buy.emit(this.product);
+  }
+
+  onDelete() {
+    console.log(`"${this.product.name}" was deleted!`);
+
+    this.delete.emit(this.product);
+  }
+
+  onEdit() {
+    this.edit.emit(this.product);
   }
 }
