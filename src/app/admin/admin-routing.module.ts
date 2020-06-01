@@ -9,10 +9,12 @@ import {
 } from './components';
 import { ProductsListComponent } from '../products';
 import { ProductFormComponent } from '../admin/components/product-form/product-form.component';
+import { AuthGuard, PoductResolveGuard } from '../core';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     component: AdminComponent,
     children: [
       { 
@@ -46,7 +48,10 @@ const routes: Routes = [
       { 
         path: 'products/edit/:id', 
         component: ProductFormComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        resolve: {
+          product: PoductResolveGuard
+        }
       },
       { 
         path: 'orders', 

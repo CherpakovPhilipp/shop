@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // rxjs
-import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
-
 
 import { Product } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/services/products.service';
@@ -27,7 +25,6 @@ export class ProductFormComponent implements OnInit {
     // data is an observable object
     // which contains custom and resolve data
     this.route.data.pipe(pluck('product')).subscribe((product: Product) => {
-      debugger;
       this.product = { ...product };
       this.originalProduct = { ...product };
     });
