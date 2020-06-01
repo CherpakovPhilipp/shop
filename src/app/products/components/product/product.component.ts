@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
   @Output()
   edit: EventEmitter<Product> = new EventEmitter<Product>();
 
-  isAdmin: boolean = true;
+  isAdmin = true;
 
   constructor(
     private productsService: ProductsService,

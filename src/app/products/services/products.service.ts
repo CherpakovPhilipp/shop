@@ -30,27 +30,27 @@ export class ProductsService {
     );
   }
 
-  deleteProduct(product: Product): void { 
+  deleteProduct(product: Product): void {
     const observer = {
       next: (products: any) => (this.products = products)
-    };   
-     
+    };
+
     this.products.pipe(
       map(products => products.filter((item: Product) => item.id !== product.id)),
     ).subscribe(observer);
   }
 
   addProduct(product: any) {
-    // products.push({ 
-    //   id: 500, 
+    // products.push({
+    //   id: 500,
     //   isAvailable: true,
-    //   ...product 
+    //   ...product
     // })
     this.products.pipe(map(products => {
       products.push({ id: 500, ...product });
       return products;
-      products.filter((item: Product) => item.id !== product.id)
-    }))
+      products.filter((item: Product) => item.id !== product.id);
+    }));
   }
 
   updateProduct(product: Product) {

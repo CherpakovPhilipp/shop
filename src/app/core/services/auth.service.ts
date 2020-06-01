@@ -7,8 +7,8 @@ import { delay, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn: boolean = false;
-  redirectUrl: string = '/admin';
+  isLoggedIn = false;
+  redirectUrl = '/admin';
 
   constructor() {}
 

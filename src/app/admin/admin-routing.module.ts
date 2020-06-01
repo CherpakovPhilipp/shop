@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
-import { 
-  AdminDashboardComponent, 
-  ManageOrdersComponent, 
-  ManageProductsComponent 
+import {
+  AdminDashboardComponent,
+  ManageOrdersComponent,
+  ManageProductsComponent
 } from './components';
 import { ProductsListComponent } from '../products';
 import { ProductFormComponent } from '../admin/components/product-form/product-form.component';
@@ -17,45 +17,45 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: AdminComponent,
     children: [
-      { 
-        path: '', 
-        component: AdminDashboardComponent 
+      {
+        path: '',
+        component: AdminDashboardComponent
       },
-      // { 
-      //   path: 'products', 
+      // {
+      //   path: 'products',
       //   component: ProductsListComponent,
       //   children: [
-      //     { 
-      //       path: 'add', 
+      //     {
+      //       path: 'add',
       //       component: ProductFormComponent
       //     },
-      //     { 
-      //       path: 'edit/:id', 
+      //     {
+      //       path: 'edit/:id',
       //       component: ProductFormComponent
       //     }
       //   ]
       // },
-      { 
-        path: 'products', 
+      {
+        path: 'products',
         component: ProductsListComponent,
         pathMatch: 'full'
       },
-      { 
-        path: 'products/add', 
+      {
+        path: 'products/add',
         component: ProductFormComponent,
         pathMatch: 'full'
       },
-      { 
-        path: 'products/edit/:id', 
+      {
+        path: 'products/edit/:id',
         component: ProductFormComponent,
         pathMatch: 'full',
         resolve: {
           product: PoductResolveGuard
         }
       },
-      { 
-        path: 'orders', 
-        component: ManageOrdersComponent 
+      {
+        path: 'orders',
+        component: ManageOrdersComponent
       }
     ]
   }

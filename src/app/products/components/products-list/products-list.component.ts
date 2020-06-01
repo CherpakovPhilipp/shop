@@ -14,7 +14,7 @@ import { CartService } from 'src/app/cart/services/cart.service';
 export class ProductsListComponent implements OnInit {
   products: Observable<Array<Product>>;
 
-  isAdmin: boolean = true;
+  isAdmin = true;
 
   constructor(
     private productsService: ProductsService,
@@ -35,13 +35,13 @@ export class ProductsListComponent implements OnInit {
   }
 
   onAdd() {
-    const link = ['/admin/products/add']
+    const link = ['/admin/products/add'];
 
     this.router.navigate(link);
   }
 
   onEdit(product: Product) {
-    const link = ['/admin/products/edit', product.id]
+    const link = ['/admin/products/edit', product.id];
 
     this.router.navigate(link);
   }

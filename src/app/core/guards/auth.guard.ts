@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const { url } = state;
-    
+
     return this.checkLogin(url);
   }
 
@@ -29,5 +29,5 @@ export class AuthGuard implements CanActivate {
     // Navigate to the login page, return UrlTree
     return this.router.parseUrl('/login');
   }
-  
+
 }

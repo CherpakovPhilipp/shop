@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
-import { 
-  AdminDashboardComponent, 
-  ManageProductsComponent, 
-  ManageOrdersComponent 
+import {
+  AdminDashboardComponent,
+  ManageProductsComponent,
+  ManageOrdersComponent
 } from './components';
 import { AdminComponent } from './admin.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 
 @NgModule({
   declarations: [
-    AdminDashboardComponent, 
-    ManageProductsComponent, 
-    ManageOrdersComponent, 
+    AdminDashboardComponent,
+    ManageProductsComponent,
+    ManageOrdersComponent,
     AdminComponent, ProductFormComponent
   ],
   imports: [

@@ -20,7 +20,7 @@ export class PoductResolveGuard implements Resolve<Product> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = +route.paramMap.get('id');
 
-    if (!id) return of({});
+    if (!id) { return of({}); }
 
     return this.productsService.getProduct(id).pipe(
       map((product: Product) => {
@@ -36,7 +36,7 @@ export class PoductResolveGuard implements Resolve<Product> {
       catchError(() => {
         this.router.navigate(['/products']);
 
-          return of(null);
+        return of(null);
       })
     );
   }
