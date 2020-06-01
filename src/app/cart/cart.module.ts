@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { CartListComponent } from './components/cart-list/cart-list.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { CartListComponent, CartItemComponent } from './components/index';
 import { SharedModule } from '../shared/shared.module';
 import { CartRoutingModule } from './cart-routing.module';
 
@@ -11,9 +10,6 @@ import { CartRoutingModule } from './cart-routing.module';
     CartListComponent,
     CartItemComponent
   ],
-  providers: [],
-  exports: [
-    CartListComponent
-  ]
+  exports: [CartListComponent]
 })
 export class CartModule {}
