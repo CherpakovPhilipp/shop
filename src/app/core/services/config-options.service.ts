@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Configuration } from '../models/config.model';
+import { IConfiguration } from '../models/config.model';
 
 @Injectable()
 export class ConfigOptionsService {
-  private config: Configuration ={
-    id: 0
+  private config: IConfiguration = {
+    id: -1
   };
 
   constructor(){}
 
-  setConfig(inputConfig: Configuration){
-    for(let key in inputConfig){
-      this.config[key] = inputConfig[key]
+  setConfig(inputConfig: IConfiguration){
+    for (const key in inputConfig) {
+      this.config[key] = inputConfig[key];
     }
   }
 
-  getConfig(): Configuration{
+  getConfig(): IConfiguration {
     return this.config;
   }
 }
