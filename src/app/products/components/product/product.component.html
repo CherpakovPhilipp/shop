@@ -4,4 +4,6 @@
   <p><b>Category:</b> {{product.category}}</p>
   <p><b>Price:</b> {{product.price | currency}}</p>
   <button (click)="onBuy()" [disabled]="!product.isAvailable">Buy</button>
+  <button *ngIf="isAdmin" (click)="onEdit()">Edit</button>
+  <button *ngIf="isAdmin" (click)="onDelete()">Delete</button>
 </div>

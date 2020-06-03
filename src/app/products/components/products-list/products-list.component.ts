@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Product } from 'src/app/products/models/product.model';
@@ -13,9 +14,12 @@ import { CartService } from 'src/app/cart/services/cart.service';
 export class ProductsListComponent implements OnInit {
   products: Observable<Array<Product>>;
 
+  isAdmin = true;
+
   constructor(
     private productsService: ProductsService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,5 +28,21 @@ export class ProductsListComponent implements OnInit {
 
   onBuy(product: Product) {
     this.cartService.addProduct(product);
+  }
+
+  onDelete(product: Product) {
+    this.productsService.deleteProduct(product);
+  }
+
+  onAdd() {
+    const link = ['/admin/products/add'];
+
+    this.router.navigate(link);
+  }
+
+  onEdit(product: Product) {
+    const link = ['/admin/products/edit', product.id];
+
+    this.router.navigate(link);
   }
 }
