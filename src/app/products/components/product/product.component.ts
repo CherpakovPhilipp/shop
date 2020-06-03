@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { Product } from '../../models/product.model';
 import { ProductsService } from 'src/app/products/services/products.service';
 import { CartService } from 'src/app/cart/services/cart.service';
+import { AuthService } from 'src/app/core';
 
 @Component({
   selector: 'app-product',
@@ -23,12 +24,11 @@ export class ProductComponent implements OnInit {
   @Output()
   edit: EventEmitter<Product> = new EventEmitter<Product>();
 
-  isAdmin = true;
-
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {

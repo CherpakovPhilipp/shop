@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from 'src/app/products/models/product.model';
 import { ProductsService } from 'src/app/products/services/products.service';
 import { CartService } from 'src/app/cart/services/cart.service';
+import { AuthService } from 'src/app/core';
 
 @Component({
   selector: 'app-products-list',
@@ -19,7 +20,8 @@ export class ProductsListComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 <div class="products-list">
   <div class="content">
-    <button *ngIf="isAdmin" (click)="onAdd()">Add Product</button>
+    <button *ngIf="authService.isLoggedIn" (click)="onAdd()">Add Product</button>
     <app-product
       *ngFor="let product of products | async"
       [product]="product"

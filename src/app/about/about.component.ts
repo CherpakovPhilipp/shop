@@ -44,7 +44,7 @@ export class AboutComponent implements OnInit {
 
     this.randomString = this.randomString5;
 
-    const key: string = 'someKey';
+    const key = 'someKey';
     this.storage.setItem(key, configInfo);
     console.log('Storage get by key:', key, this.storage.getItem(key));
 
