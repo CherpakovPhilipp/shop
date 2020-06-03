@@ -13,7 +13,7 @@
     </li>
 
     <li routerLinkActive="active">
-      <a routerLink="/cart">Cart {{productsInCart ? productsInCart : ''}}</a>
+      <a routerLink="/cart">Cart {{productsInCart}}</a>
     </li>
   </ul>
 </header>
@@ -21,4 +21,7 @@
   <h1 #appTitle></h1>
   <router-outlet></router-outlet>
 </div>
-<footer></footer>
+<footer>
+  <app-about></app-about>
+</footer>
+

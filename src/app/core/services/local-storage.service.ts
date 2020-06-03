@@ -1,4 +1,4 @@
-import { Injectable, Inject, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LocalStorageService implements Storage {
@@ -12,8 +12,9 @@ export class LocalStorageService implements Storage {
     this.storage.clear();
   }
 
-  getItem(key: string): string {
-    return this.storage.getItem(key);
+  getItem(key: string): any {
+    return JSON.parse(this.storage.getItem(key)).value;
+
   }
 
   key(index: number): string {
@@ -24,17 +25,17 @@ export class LocalStorageService implements Storage {
     this.storage.removeItem(key);
   }
 
-  setItem(key: string, value: string): void {
-    this.storage.setItem(key, value);
+  setItem(key: string, value: any): void {
+    this.storage.setItem(key, JSON.stringify({ 'value': value }));
   }
 }
 
 export abstract class LocalStorageToken {
   clear: () => void;
-  getItem: (key: string) => string;
+  getItem: (key: string) => any;
   key: (index: number) => string;
   removeItem: (key: number) => void;
-  setItem: (key: string, value: string) => void;
+  setItem: (key: string, value: any) => void;
 }
 
 // export const StorageToken = new InjectionToken<LocalStorageService>('Storage Token');

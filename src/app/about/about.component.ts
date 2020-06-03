@@ -9,9 +9,10 @@ import {
   LocalStorageToken,
   ConfigOptionsService
 } from '../core';
+import { IConfiguration } from '../core/models/config.model';
 
 const appInfo = { App: 'Devices Shop', Ver: '1.0' };
-const configInfo = {id: 1, email: 'a@a.com', login: 'admin'};
+const configInfo: IConfiguration = {id: 1, email: 'a@a.com', login: 'admin'};
 
 @Component({
   selector: 'app-about',
@@ -40,14 +41,16 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.appName = appInfo.App;
     this.appVersion = appInfo.Ver;
+
     this.randomString = this.randomString5;
-    /////////////
-    this.storage.setItem('someKey', 'value');
-    console.log('storage get', this.storage.getItem('someKey'));
-    ////////////
+
+    const key: string = 'someKey';
+    this.storage.setItem(key, configInfo);
+    console.log('Storage get by key:', key, this.storage.getItem(key));
+
     this.configService.setConfig(configInfo);
-    let currentConfig = this.configService.getConfig();
-    for(let key in currentConfig){
+    const currentConfig = this.configService.getConfig();
+    for (const key in currentConfig) {
       console.log(currentConfig[key]);
     }
   }
