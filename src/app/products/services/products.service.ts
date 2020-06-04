@@ -20,10 +20,6 @@ export class ProductsService {
 
   constructor() {}
 
-  getProducts(): Observable<Array<Product>> {
-    return this.products;
-  }
-
   getProduct(id: number): Observable<Product> {
     return this.products.pipe(
       map(products => products.find((product: Product) => product.id === id))

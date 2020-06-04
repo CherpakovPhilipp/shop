@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
 
 import { Product } from '../../models/product.model';
-import { ProductsService } from 'src/app/products/services/products.service';
+import { ProductsService, ProductsPromiseService } from 'src/app/products/services';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from 'src/app/core';
 
@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
+    private productsPromiseService: ProductsPromiseService,
     private cartService: CartService,
     private route: ActivatedRoute,
     public authService: AuthService
@@ -38,7 +39,7 @@ export class ProductComponent implements OnInit {
 
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        return params.get('id') ? this.productsService.getProduct(+params.get('id')) : Promise.resolve(this.product);
+        return params.get('id') ? this.productsPromiseService.getProduct(+params.get('id')) : Promise.resolve(this.product);
       }
     )).subscribe(observer);
   }

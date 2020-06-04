@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Product } from 'src/app/products/models/product.model';
-import { ProductsService } from 'src/app/products/services/products.service';
+import { ProductsService, ProductsPromiseService } from 'src/app/products/services';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from 'src/app/core';
 
@@ -13,19 +13,20 @@ import { AuthService } from 'src/app/core';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-  products: Observable<Array<Product>>;
+  products: Promise<Array<Product>>;
 
   isAdmin = true;
 
   constructor(
     private productsService: ProductsService,
+    private productsPromiseService: ProductsPromiseService,
     private cartService: CartService,
     private router: Router,
     public authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.products = this.productsService.getProducts();
+    this.products = this.productsPromiseService.getProducts();
   }
 
   onBuy(product: Product) {
@@ -33,7 +34,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   onDelete(product: Product) {
-    this.productsService.deleteProduct(product);
+    this.productsPromiseService.deleteProduct(product);
   }
 
   onAdd() {
