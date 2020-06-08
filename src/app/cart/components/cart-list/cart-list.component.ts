@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { CartItem } from '../../models';
 import { FieldsFilters, OrderFilters } from '../../enums';
+import { OrdersService } from 'src/app/orders/services/orders.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-list',
@@ -13,7 +15,11 @@ export class CartListComponent {
   fieldFilters: any;
   orderFilters: any;
 
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    private ordersService: OrdersService,
+    private router: Router
+    ) {
     this.orderFilters = Object.values(OrderFilters);
     this.fieldFilters = Object.values(FieldsFilters);
   }
@@ -44,5 +50,10 @@ export class CartListComponent {
 
   onRemoveFromCart(product: CartItem) {
     this.cartService.removeProduct(product);
+  }
+
+  onMakeOrder(){
+    this.ordersService.setProducts(this.cartProducts);
+    this.router.navigate(['/orders']);
   }
 }

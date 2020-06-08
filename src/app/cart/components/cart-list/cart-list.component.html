@@ -23,6 +23,6 @@
 		></app-cart-item>
 		<div> Total price = {{totalSum | currency}} ({{totalQuantity}} items) </div>
 	</div>
-	
+	<button type="submit" (click)="onMakeOrder()">Buy</button>
 	<ng-template #emptyCart>Cart is empty</ng-template>
 </div>
