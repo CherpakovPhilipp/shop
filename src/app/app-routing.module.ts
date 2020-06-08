@@ -7,11 +7,6 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/products',
-    pathMatch: 'full'
-  },
-  {
     path: 'about',
     component: AboutComponent,
   },
@@ -30,6 +25,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: '',
+    redirectTo: '/products',
+    pathMatch: 'full'
   },
   {
     path: '**',
