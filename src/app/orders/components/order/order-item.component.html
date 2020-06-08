@@ -1,0 +1,5 @@
+<p>{{orderItem.name}}</p>
+<div>
+  <input type="number" (change)="onSetQuantity(+$event.target.value)" [value]="orderItem.quantity">
+</div>
+<button class="remove" (click)="onRemoveFromOrder()">X</button>

@@ -1,0 +1,13 @@
+<div class="order">
+	<div *ngIf="productsList.length; else emptyList"> 
+		<app-order-item
+			*ngFor="let product of productsList"
+			[orderItem] = "product"
+			(setQuantity) = "onSetQuantity($event)"
+			(removeFromOrder) = "onRemoveFromOrder($event)"
+		></app-order-item>
+		<div> Total price = {{totalSum | currency}} ({{totalQuantity}} items) </div>
+	</div>
+	
+	<ng-template #emptyList>Order list is empty</ng-template>
+</div>
