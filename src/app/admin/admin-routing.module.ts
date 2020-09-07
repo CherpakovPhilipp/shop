@@ -21,20 +21,6 @@ const routes: Routes = [
         path: '',
         component: AdminDashboardComponent
       },
-      // {
-      //   path: 'products',
-      //   component: ProductsListComponent,
-      //   children: [
-      //     {
-      //       path: 'add',
-      //       component: ProductFormComponent
-      //     },
-      //     {
-      //       path: 'edit/:id',
-      //       component: ProductFormComponent
-      //     }
-      //   ]
-      // },
       {
         path: 'products',
         component: ProductsListComponent,

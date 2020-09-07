@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-import { products } from './products';
 import { Product } from '../models/product.model';
-import { Categories } from '../enums/categories';
-
-const productsObservable: Observable<Array<Product>> = of(products.sort((a, b) => {
-  if (!a.isAvailable) { return 1; }
-  if (!b.isAvailable) { return -1; }
-}));
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsPromiseService {
   private productsURL = 'http://localhost:3000/products';
-  products: Observable<Array<Product>> = productsObservable;
+  //products: Observable<Array<Product>>;
 
   constructor(
     private http: HttpClient
   ) {}
 
   private handleError(error: any): Promise<any> {
-    console.log(`An error occured: ${error}`)
+    console.log(`An error occured: ${error}`);
+
     return Promise.reject(error.message || error);
   }
 
@@ -43,7 +36,6 @@ export class ProductsPromiseService {
       .catch(this.handleError)
   }
   
-
   deleteProduct(product: Product): Promise<Product> {
     const url = `${this.productsURL}/${product.id}`
 
@@ -66,6 +58,16 @@ export class ProductsPromiseService {
   }
 
   updateProduct(product: Product) {
+    const url = `${this.productsURL}/${product.id}`;
+    const body = JSON.stringify(product);
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
 
+    return this.http
+      .put(url, body, options)
+      .toPromise()
+      .then(response => response as Product)
+      .catch(this.handleError);
   }
 }

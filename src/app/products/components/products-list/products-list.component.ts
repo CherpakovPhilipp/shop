@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Product } from 'src/app/products/models/product.model';
 import { ProductsService, ProductsPromiseService } from 'src/app/products/services';
-import { CartService } from 'src/app/cart/services/cart.service';
+import { CartService, CartObservableService } from 'src/app/cart/services';
 import { AuthService } from 'src/app/core';
 
 @Component({
@@ -21,6 +21,7 @@ export class ProductsListComponent implements OnInit {
     private productsService: ProductsService,
     private productsPromiseService: ProductsPromiseService,
     private cartService: CartService,
+    private cartObservableService: CartObservableService,
     private router: Router,
     public authService: AuthService
   ) {}
@@ -30,11 +31,13 @@ export class ProductsListComponent implements OnInit {
   }
 
   onBuy(product: Product) {
-    this.cartService.addProduct(product);
+    this.cartObservableService.addProduct(product);
   }
 
-  onDelete(product: Product) {
-    this.productsPromiseService.deleteProduct(product);
+  async onDelete(product: Product) {
+    await this.productsPromiseService.deleteProduct(product);
+    
+    this.products = this.productsPromiseService.getProducts();
   }
 
   onAdd() {

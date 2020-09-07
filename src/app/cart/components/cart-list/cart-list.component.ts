@@ -1,48 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { CartService } from 'src/app/cart/services/cart.service';
+import { CartObservableService } from 'src/app/cart/services';
 import { CartItem } from '../../models';
 import { FieldsFilters, OrderFilters } from '../../enums';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.scss']
 })
-export class CartListComponent {
+export class CartListComponent implements OnInit {
   fieldFilters: any;
   orderFilters: any;
 
-  constructor(private cartService: CartService) {
+  cartProducts$: Observable<CartItem[]> = this.cartObservableService.cartProducts$;
+  totalQuantity$: Observable<number> = this.cartObservableService.totalQuantity$;
+  totalSum$: Observable<number> = this.cartObservableService.totalSum$;
+
+  constructor(
+    private cartObservableService: CartObservableService
+  ) {
     this.orderFilters = Object.values(OrderFilters);
     this.fieldFilters = Object.values(FieldsFilters);
   }
 
-  get cartProducts(): Array<CartItem> {
-    return this.cartService.getCartProducts();
+  ngOnInit() {
+    this.cartObservableService.getCartProducts();
+    this.cartObservableService.getTotalSum();
+    this.cartObservableService.getTotalQuantity();
   }
 
-  get totalSum(): number {
-    return this.cartService.getTotalSum();
-  }
-
-  get totalQuantity(): number {
-    return this.cartService.getTotalQuantity();
-  }
-
-  onIncreaseQuantity(product: CartItem){
-    this.cartService.increaseQuantity(product);
+  onIncreaseQuantity(product: CartItem): void {
+    this.cartObservableService.increaseQuantity(product);
   }
 
   onDecreaseQuantity(product: CartItem){
-    this.cartService.decreaseQuantity(product);
+    this.cartObservableService.decreaseQuantity(product);
   }
 
   onSetQuantity(product: CartItem){
-    this.cartService.setQuantity(product);
+    this.cartObservableService.setQuantity(product);
   }
 
   onRemoveFromCart(product: CartItem) {
-    this.cartService.removeProduct(product);
+    this.cartObservableService.removeProduct(product);
   }
 }

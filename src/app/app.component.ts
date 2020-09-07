@@ -1,21 +1,24 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { CartService } from './cart/services/cart.service';
+import { CartObservableService } from './cart/services/cart-obesrvable.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   @ViewChild('appTitle') heading: ElementRef<HTMLHeadingElement>;
 
   title = 'Devices Shop';
+  cartTotalQuantity$: Observable<number> = this.cartObservableService.totalQuantity$;
 
-  constructor(private cartService: CartService ) { }
+  constructor(private cartObservableService: CartObservableService ) { }
 
-  get productsInCart(): number {
-    return this.cartService.getTotalQuantity();
+  ngOnInit() {
+    this.cartObservableService.getCartProducts(); // TODO: run this method only when totalQuantity$ doesn't exist
+    this.cartObservableService.getTotalQuantity();
   }
 
   ngAfterViewInit() {

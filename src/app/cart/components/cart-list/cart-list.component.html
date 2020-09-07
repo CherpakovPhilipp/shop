@@ -11,9 +11,10 @@
 			<option *ngFor="let filter of orderFilters" value={{filter}}>{{filter}}</option>
 		</select>
 	</div>
-	<div *ngIf="cartProducts.length; else emptyCart"> 
+	<!-- <div *ngIf="(cartProducts | async)?.length; else emptyCart"></div> -->
+	<div> 
 		<app-cart-item
-			*ngFor="let product of (cartProducts | orderBy : fieldFilter.value : orderFilter.value)"
+			*ngFor="let product of (cartProducts$ | async | orderBy : fieldFilter.value : orderFilter.value)"
 			[cartItem] = "product"
 			(increaseQuantity) = "onIncreaseQuantity($event)"
 			(decreaseQuantity) = "onDecreaseQuantity($event)"
@@ -21,7 +22,7 @@
 			(removeFromCart) = "onRemoveFromCart($event)"
 			appChangeBgOnHover
 		></app-cart-item>
-		<div> Total price = {{totalSum | currency}} ({{totalQuantity}} items) </div>
+		<div> Total price = {{totalSum$| async | currency}} ({{totalQuantity$ | async}} items) </div>
 	</div>
 	
 	<ng-template #emptyCart>Cart is empty</ng-template>
