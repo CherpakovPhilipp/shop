@@ -29,7 +29,7 @@ export class PoductResolveGuard implements Resolve<Product> {
         } else {
           this.router.navigate(['/products']);
 
-          return null;
+          return of(null);
         }
       }),
       take(1),

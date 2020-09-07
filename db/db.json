@@ -1,0 +1,103 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "MacBook Air",
+      "description": "Description for MacBook Air",
+      "price": 7001,
+      "category": "Mac",
+      "isAvailable": true
+    },
+    {
+      "id": 2,
+      "name": "iPhone 11",
+      "description": "Description for iPhone 11",
+      "price": 1000,
+      "category": "Iphone",
+      "isAvailable": true
+    },
+    {
+      "id": 4,
+      "name": "MacBook Pro",
+      "description": "Description for MacBook Pro",
+      "price": 1500,
+      "category": "Mac",
+      "isAvailable": false
+    },
+    {
+      "id": 5,
+      "name": "iPhone SE",
+      "description": "Description for iPhone SE",
+      "price": 800,
+      "category": "Iphone",
+      "isAvailable": true
+    },
+    {
+      "id": 6,
+      "name": "iPad Pro",
+      "description": "Description for iPad Pro",
+      "price": 1200,
+      "category": "Ipad",
+      "isAvailable": true
+    },
+    {
+      "id": 7,
+      "name": "iPad",
+      "description": "Description for iPad",
+      "price": 900,
+      "category": "Ipad",
+      "isAvailable": true
+    },
+    {
+      "id": 8,
+      "name": "iPhone XR",
+      "description": "Description for iPhone XR",
+      "price": 1400,
+      "category": "Iphone",
+      "isAvailable": true
+    },
+    {
+      "id": 9,
+      "name": "iPad Air",
+      "description": "Description for iPad Air",
+      "price": 900,
+      "category": "Ipad",
+      "isAvailable": false
+    },
+    {
+      "name": "Samsung S10",
+      "description": "coming soon!",
+      "price": 799,
+      "id": 11
+    }
+  ],
+  "cart": [
+    {
+      "id": 8,
+      "name": "iPhone XR",
+      "description": "Description for iPhone XR",
+      "price": 1400,
+      "category": "Iphone",
+      "isAvailable": true,
+      "quantity": 13
+    },
+    {
+      "id": 1,
+      "name": "MacBook Air",
+      "description": "Description for MacBook Air",
+      "price": 7001,
+      "category": "Mac",
+      "isAvailable": true,
+      "quantity": 3
+    },
+    {
+      "id": 2,
+      "name": "iPhone 11",
+      "description": "Description for iPhone 11",
+      "price": 1000,
+      "category": "Iphone",
+      "isAvailable": true,
+      "quantity": 1
+    }
+  ]
+}

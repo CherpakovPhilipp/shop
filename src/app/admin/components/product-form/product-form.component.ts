@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 
 import { Product } from 'src/app/products/models/product.model';
-import { ProductsService } from 'src/app/products/services/products.service';
+import { ProductsPromiseService } from 'src/app/products/services';
 
 @Component({
   templateUrl: './product-form.component.html',
@@ -16,7 +16,7 @@ export class ProductFormComponent implements OnInit {
   originalProduct: Product;
 
   constructor(
-    private productsService: ProductsService,
+    private productsPromiseService: ProductsPromiseService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -30,15 +30,17 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  onSaveProduct() {
+  async onSaveProduct() {
     const product = { ...this.product };
 
     if (product.id) {
-      this.productsService.updateProduct(product);
+      await this.productsPromiseService.updateProduct(product);
+
       // optional parameter: http://localhost:4200/users;id=2
       this.router.navigate(['/products', { editedProductID: product.id }]);
     } else {
-      this.productsService.addProduct(product);
+      await this.productsPromiseService.addProduct(product);
+      
       this.onGoBack();
     }
     this.originalProduct = { ...this.product };
