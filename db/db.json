@@ -41,14 +41,6 @@
       "isAvailable": true
     },
     {
-      "id": 7,
-      "name": "iPad",
-      "description": "Description for iPad",
-      "price": 900,
-      "category": "Ipad",
-      "isAvailable": true
-    },
-    {
       "id": 8,
       "name": "iPhone XR",
       "description": "Description for iPhone XR",
@@ -69,35 +61,13 @@
       "description": "coming soon!",
       "price": 799,
       "id": 11
+    },
+    {
+      "name": "Samsung S20",
+      "description": "Samsung S20 description",
+      "price": 1050,
+      "id": 12
     }
   ],
-  "cart": [
-    {
-      "id": 8,
-      "name": "iPhone XR",
-      "description": "Description for iPhone XR",
-      "price": 1400,
-      "category": "Iphone",
-      "isAvailable": true,
-      "quantity": 13
-    },
-    {
-      "id": 1,
-      "name": "MacBook Air",
-      "description": "Description for MacBook Air",
-      "price": 7001,
-      "category": "Mac",
-      "isAvailable": true,
-      "quantity": 3
-    },
-    {
-      "id": 2,
-      "name": "iPhone 11",
-      "description": "Description for iPhone 11",
-      "price": 1000,
-      "category": "Iphone",
-      "isAvailable": true,
-      "quantity": 1
-    }
-  ]
+  "cart": []
 }
